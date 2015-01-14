@@ -20,7 +20,28 @@ Or install it yourself as:
 
 ## Usage
 
-Building...
+#### HashHelper Examples
+
+```
+options = { a: '1', b: '2', c: '3' }
+
+get_value(:a, options)
+# => '1'
+get_value(:d, options)
+# => nil
+get_value(:d, options, '4')
+# => '4'
+
+pop_value :a, options
+# => '1'
+# options = { b: '2', c: '3' }
+pop_value :d, options
+# => nil
+pop_value :d, options, '4'
+# => '4'
+# options = { a: '1', b: '2', c: '3' }
+```
+
 
 ## Contributing
 
