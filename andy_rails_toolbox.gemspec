@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AndyRailsToolbox::VERSION
   spec.authors       = ["ChouAndy"]
   spec.email         = ["chouandy625@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Includes many useful helpers for rails development.}
+  spec.description   = %q{Andy Rails Toolbox includes many useful helpers for rails development.}
   spec.homepage      = "https://github.com/ChouAndy/andy_rails_toolbox"
   spec.license       = "MIT"
 
