@@ -42,6 +42,24 @@ pop_value :d, options, '4'
 # options = { a: '1', b: '2', c: '3' }
 ```
 
+#### TimeagoHelper
+
+Add below codes to file `app/assets/javascripts/application.js
+
+```
+...
+//= require jquery.timeago
+//= require jquery.timeago.zh-TW
+//= require jquery.timeago.load
+...
+```
+
+Use in View
+
+```
+<%= timeago('2014-11-21 09:38:27.256503') %>
+=> '2個月之前'
+```
 
 ## Contributing
 
