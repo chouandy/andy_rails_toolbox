@@ -20,6 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
+
+#### FontAwesomeHelper Examples
+
+Font Awesome icons Homepage: http://fortawesome.github.io/Font-Awesome/
+
+```
+fa_icon "user"
+# => <i class="fa fa-user"></i>
+
+fa_icon "user", text: "Login"
+# => <i class="fa fa-user"></i> Login
+
+fa_icon "user", text: "Login", right: true
+# => Login <i class="fa fa-user"></i>
+
+fa_icon "user 4x"
+# => <i class="fa fa-user fa-4x"></i>
+```
+
 #### HashHelper Examples
 
 ```
@@ -57,7 +76,7 @@ Add below codes to file `app/assets/javascripts/application.js
 Use in View
 
 ```
-<%= timeago('2014-11-21 09:38:27.256503') %>
+timeago('2014-11-21 09:38:27.256503')
 => '2個月之前'
 ```
 

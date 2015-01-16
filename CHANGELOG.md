@@ -2,6 +2,7 @@
 
 Features:
 
+  - Add FontAwesomeHelper for Font Awesome icons
   - Add HashHelper for handle hash
   - Add TimeagoHelper
 
