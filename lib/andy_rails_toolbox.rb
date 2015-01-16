@@ -1,5 +1,3 @@
-require "andy_rails_toolbox/version"
-
 module AndyRailsToolbox
   class Engine < ::Rails::Engine
     initializer 'andy_rails_toolbox' do

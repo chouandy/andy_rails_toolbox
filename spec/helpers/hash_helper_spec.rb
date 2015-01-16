@@ -10,10 +10,10 @@ RSpec.describe "HashHelper" do
 
     it "has defined in HashHelper" do
       options = {}
-      expect(get_value :a, options).to be(nil)
+      expect(get_value :a, options).to be_nil
     end
 
-    context "don't give a default value argument" do
+    context "without give a default value argument" do
 
       it "can get a value from a hash by a existed key" do
         options = { a: '1' }
@@ -22,11 +22,11 @@ RSpec.describe "HashHelper" do
 
       it "should get nil if key is not existed in a hash" do
         options = { a: '1' }
-        expect(get_value :b, options).to be(nil)
+        expect(get_value :b, options).to be_nil
       end
     end
 
-    context "give a default value argument" do
+    context "with a default value argument" do
 
       it "should get the default value if the value is nil" do
         options = { a: nil }
@@ -44,10 +44,10 @@ RSpec.describe "HashHelper" do
 
     it "has defined in HashHelper" do
       options = {}
-      expect(pop_value :a, options).to be(nil)
+      expect(pop_value :a, options).to be_nil
     end
 
-    context "don't give a default value argument" do
+    context "without a default value argument" do
 
       it "can get a value from a hash by a existed key" do
         options = { 'a' => '1' }
@@ -59,14 +59,14 @@ RSpec.describe "HashHelper" do
         expect(pop_value :b, options).to be(nil)
       end
 
-      it "should be disappear by using pop_value pop the key from a hash" do |variable|
+      it "the key should be disappear from the hash" do |variable|
         options = { a: '1' }
         pop_value :a, options
         expect(options).to eq({})
       end
     end
 
-    context "give a default value argument" do
+    context "with a default value argument" do
 
       it "should get the default value if the value is nil" do
         options = { a: nil }
