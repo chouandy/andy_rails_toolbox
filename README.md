@@ -20,10 +20,33 @@ Or install it yourself as:
 
 ## Usage
 
+#### QrcodeHelper Examples
 
-#### FontAwesomeHelper Examples
+```
+qrcode 'Hello world!'
+```
+
+<img alt="Hello world!" src="https://chart.googleapis.com/chart?cht=qr&amp;chl=Hello world!&amp;chs=200x200" />
+
+QRCode options parameters: <a href="https://google-developers.appspot.com/chart/infographics/docs/qr_codes#overview" target="_blank">Here</a>
+
+```
+qrcode 'Hello world!', width: '300', output_encoding: 'Shift_JIS', error_correction_level: 'H', margin: '10'
+```
+
+#### FontAwesomeHelper
 
 Font Awesome icons Homepage: http://fortawesome.github.io/Font-Awesome/
+
+Add below codes to layout `app/views/layout/application.html.erb`
+
+```
+...
+<%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' %>
+...
+```
+
+Examples
 
 ```
 fa_icon "user"
@@ -44,11 +67,11 @@ fa_icon "user 4x"
 ```
 options = { a: '1', b: '2', c: '3' }
 
-get_value(:a, options)
+get_value :a, options
 # => '1'
-get_value(:d, options)
+get_value :d, options
 # => nil
-get_value(:d, options, '4')
+get_value :d, options, '4'
 # => '4'
 
 pop_value :a, options
@@ -63,7 +86,7 @@ pop_value :d, options, '4'
 
 #### TimeagoHelper
 
-Add below codes to file `app/assets/javascripts/application.js
+Add below codes to file `app/assets/javascripts/application.js`
 
 ```
 ...
@@ -76,7 +99,7 @@ Add below codes to file `app/assets/javascripts/application.js
 Use in View
 
 ```
-timeago('2014-11-21 09:38:27.256503')
+timeago '2014-11-21 09:38:27.256503'
 => '2個月之前'
 ```
 
