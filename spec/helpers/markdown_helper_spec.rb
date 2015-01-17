@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe MarkdownHelper do
+
   describe "#markdown" do
+
     it "should get <h1> element" do
       rspec = helper.markdown '# Title'
       expected = %Q(<h1>Title</h1>\n)
@@ -19,7 +21,5 @@ RSpec.describe MarkdownHelper do
       expected = %Q(<p><a href=\"http://example.com/\">an example</a></p>\n)
       expect(rspec).to eq expected
     end
-
-
   end
 end

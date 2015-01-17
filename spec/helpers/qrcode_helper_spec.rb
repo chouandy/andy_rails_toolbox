@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe QrcodeHelper do
+
   describe "#qrcode" do
+
     it "should get a qrcode <img> element" do
       rspec = helper.qrcode 'Hello world!'
       expected = %Q(<img alt=\"Hello world!\" src=\"https://chart.googleapis.com/chart?cht=qr&amp;chl=Hello world!&amp;chs=200x200\" />)

@@ -20,6 +20,70 @@ Or install it yourself as:
 
 ## Usage
 
+#### BootstrapHelper
+
+Bootstrap Homepage: <a href="http://getbootstrap.com/" target="_blank">http://getbootstrap.com/</a>
+
+
+Add below codes to layout `app/views/layout/application.html.erb`
+
+``` erb
+...
+<%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' %>
+...
+<%= javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' %>
+...
+```
+
+Examples
+
+ICONS
+
+``` rb
+bs_icon 'user'
+# => <span class="glyphicon glyphicon-user"></span>
+```
+
+BUTTONS
+
+``` rb
+html_button 'button'
+# => <button name="button" type="button" class="btn btn-default">button</button>
+html_button 'button', color: 'primary'
+# => <button name="button" type="button" class="btn btn-primary">button</button>
+html_button 'button', size: 'sm'
+# => <button name="button" type="button" class="btn btn-default btn-sm">button</button>
+html_button 'button', block: true
+# => <button name="button" type="button" class="btn btn-default btn-block">button</button>
+html_button 'button', icon: 'user'
+# => <button name="button" type="button" class="btn btn-default"><i class="fa fa-user"></i> button</button>
+html_button 'button', active: true
+# => <button name="button" type="button" class="btn btn-default active">button</button>
+submit_button 'submit'
+# => <button type="submit" class="btn btn-default">submit</button>
+reset_button 'reset'
+# => <button type="reset" class="btn btn-default">reset</button>
+link_button 'link', url: root_path
+# => <a class="btn btn-default" role="button" href="/">link</a>
+input_button 'input button'
+# => <input class="btn btn-default" value="input button" type="button" />
+input_submit 'input button'
+# => <input type="submit" name="commit" value="input button" class="btn btn-default" />
+```
+
+IMAGES
+
+``` rb
+image_responsive 'pic.png'
+# => <img class="img-responsive" src="/images/pic.png" alt="Pic" />
+image_rounded 'pic.png'
+# => <img class="img-rounded" src="/images/pic.png" alt="Pic" />
+image_circle 'pic.png'
+# => <img class="img-circle" src="/images/pic.png" alt="Pic" />
+image_thumbnail 'pic.png'
+# => <img class="img-thumbnail" src="/images/pic.png" alt="Pic" />
+```
+
 #### MarkdownHelper
 
 New a css erb file `app/assets/stylesheets/pygments.css.erb` for pygments color style
@@ -43,11 +107,11 @@ Examples
 
 ``` rb
 markdown '# h1'
-# => <h1>h1</h1>\n
+# => <h1>h1</h1>
 markdown '## h2'
-# => <h2>h2</h2>\n
+# => <h2>h2</h2>
 markdown '[an example](http://example.com/)'
-# => <p><a href=\"http://example.com/\">an example</a></p>\n
+# => <p><a href="http://example.com/">an example</a></p>
 markdown @post.content
 # => transform markdown code to html codes and payments highlighter
 ```
@@ -68,11 +132,11 @@ qrcode 'Hello world!', width: '300', output_encoding: 'Shift_JIS', error_correct
 
 #### FontAwesomeHelper
 
-Font Awesome icons Homepage: http://fortawesome.github.io/Font-Awesome/
+Font Awesome icons Homepage: <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">http://fortawesome.github.io/Font-Awesome/</a>
 
 Add below codes to layout `app/views/layout/application.html.erb`
 
-``` rb
+``` erb
 ...
 <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' %>
 ...
