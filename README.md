@@ -20,9 +20,41 @@ Or install it yourself as:
 
 ## Usage
 
+#### MarkdownHelper
+
+New a css erb file `app/assets/stylesheets/pygments.css.erb` for pygments color style
+
+``` erb
+<%= Pygments.css(style: "igor") %>
+```
+
+All styles:
+
+``` sh
+$ rails c
+# => Loading development environment (Rails 4.2.0)
+irb(main):001:0> require 'pygments.rb'
+# => true
+irb(main):002:0> Pygments.styles
+# => ["manni", "igor", "xcode", "vim", "autumn", "vs", "rrt", "native", "perldoc", "borland", "tango", "emacs", "friendly", "monokai", "paraiso-dark", "colorful", "murphy", "bw", "pastie", "paraiso-light", "trac", "default", "fruity"]
+```
+
+Examples
+
+``` rb
+markdown '# h1'
+# => <h1>h1</h1>\n
+markdown '## h2'
+# => <h2>h2</h2>\n
+markdown '[an example](http://example.com/)'
+# => <p><a href=\"http://example.com/\">an example</a></p>\n
+markdown @post.content
+# => transform markdown code to html codes and payments highlighter
+```
+
 #### QrcodeHelper Examples
 
-```
+``` rb
 qrcode 'Hello world!'
 ```
 
@@ -30,7 +62,7 @@ qrcode 'Hello world!'
 
 QRCode options parameters: <a href="https://google-developers.appspot.com/chart/infographics/docs/qr_codes#overview" target="_blank">Here</a>
 
-```
+``` rb
 qrcode 'Hello world!', width: '300', output_encoding: 'Shift_JIS', error_correction_level: 'H', margin: '10'
 ```
 
@@ -40,7 +72,7 @@ Font Awesome icons Homepage: http://fortawesome.github.io/Font-Awesome/
 
 Add below codes to layout `app/views/layout/application.html.erb`
 
-```
+``` rb
 ...
 <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' %>
 ...
@@ -48,7 +80,7 @@ Add below codes to layout `app/views/layout/application.html.erb`
 
 Examples
 
-```
+``` rb
 fa_icon "user"
 # => <i class="fa fa-user"></i>
 
@@ -64,7 +96,7 @@ fa_icon "user 4x"
 
 #### HashHelper Examples
 
-```
+``` rb
 options = { a: '1', b: '2', c: '3' }
 
 get_value :a, options
@@ -88,7 +120,7 @@ pop_value :d, options, '4'
 
 Add below codes to file `app/assets/javascripts/application.js`
 
-```
+``` js
 ...
 //= require jquery.timeago
 //= require jquery.timeago.zh-TW
@@ -98,9 +130,9 @@ Add below codes to file `app/assets/javascripts/application.js`
 
 Use in View
 
-```
+``` rb
 timeago '2014-11-21 09:38:27.256503'
-=> '2個月之前'
+# => '2個月之前'
 ```
 
 ## Contributing
