@@ -1,4 +1,4 @@
-# Andy Rails Toolbox
+# Andy Rails Toolbox [![Gem Version](https://badge.fury.io/rb/andy_rails_toolbox.svg)](http://badge.fury.io/rb/andy_rails_toolbox)
 
 Andy Rails Toolbox includes many useful helpers for rails development.
 
