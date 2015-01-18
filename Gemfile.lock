@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    andy_rails_toolbox (0.0.1)
+    andy_rails_toolbox (1.0.1)
       pygments.rb
       redcarpet
 
