@@ -148,6 +148,13 @@ module BootstrapHelper
     end
   end
 
+  def button_group(*buttons, **options)
+    add_css_class 'btn-group', options
+    content_tag :div, options do
+      buttons.join.html_safe
+    end
+  end
+
   ##############
   ### IMAGES ###
   ##############
