@@ -25,11 +25,6 @@ module BootstrapHelper
     btn :html_button, label, options
   end
 
-  # Generates a submit button.
-  def submit_button(label = 'Submit', options = {})
-    btn :submit_button, label, options
-  end
-
   # Generates a reset button.
   def reset_button(label = 'Reset', options = {})
     btn :reset_button, label, options
@@ -48,6 +43,56 @@ module BootstrapHelper
   # Generates a input submit button.
   def input_submit(label = 'Submit', options = {})
     btn :input_submit, label, options
+  end
+
+  # Generates a link show button.
+  def show_button(label = 'Show', options = {})
+    show_button_options = { icon: 'search', color: 'info' }
+    show_button_options.merge!(options)
+    link_button label, show_button_options
+  end
+
+  # Generates a link new button.
+  def new_button(label = 'New', options = {})
+    new_button_options = { icon: 'plus', color: 'primary' }
+    new_button_options.merge!(options)
+    link_button label, new_button_options
+  end
+
+  # Generates a link edit button.
+  def edit_button(label = 'Edit', options = {})
+    edit_button_options = { icon: 'edit', color: 'warning' }
+    edit_button_options.merge!(options)
+    link_button label, edit_button_options
+  end
+
+  # Generates a link destroy button.
+  def destroy_button(label = 'Destroy', options = {})
+    destroy_button_options = { icon: 'trash', color: 'danger', data: { method: :delete, confirm: 'Are you sure?' } }
+    destroy_button_options[:data][:confirm] = options.delete(:confirm) if options[:confirm]
+    destroy_button_options.merge!(options)
+    link_button label, destroy_button_options
+  end
+
+  # Generates a link back button.
+  def back_button(label = 'Back', options = {})
+    back_button_options = { icon: 'reply' }
+    back_button_options.merge!(options)
+    link_button label, back_button_options
+  end
+
+  # Generates a submit button.
+  def submit_button(label = 'Submit', options = {})
+    submit_button_options = { icon: 'check', color: 'primary' }
+    submit_button_options.merge!(options)
+    btn :submit_button, label, submit_button_options
+  end
+
+  # Generates a link cancel button.
+  def cancel_button(label = 'Cancel', options = {})
+    back_button_options = { icon: 'ban' }
+    back_button_options.merge!(options)
+    link_button label, back_button_options
   end
 
   # Generates a button.
