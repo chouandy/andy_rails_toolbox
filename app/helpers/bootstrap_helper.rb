@@ -108,6 +108,9 @@ module BootstrapHelper
     block = pop_value :block, options
     add_css_class('btn-block', options) if block
 
+    label_hidden = pop_value :label_hidden, options
+    label = content_tag :sapn, label, class: "hidden-#{label_hidden}" if label_hidden
+
     add_active_class options
 
     icon = pop_value :icon, options
