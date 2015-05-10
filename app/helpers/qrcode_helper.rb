@@ -1,5 +1,5 @@
 module QrcodeHelper
-  def qrcode(data='', options = {})
+  def qrcode(data = '', options = {})
     # Google API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes
     width = pop_value :width, options, '200'
     output_encoding = pop_value :output_encoding, options

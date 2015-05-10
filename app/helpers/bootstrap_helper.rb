@@ -1,7 +1,8 @@
 module BootstrapHelper
-  #############
-  ### ICONS ###
-  #############
+
+  # --------- #
+  # - ICONS - #
+  # --------- #
 
   # Generates an icon.
   def bs_icon(icon, options = {})
@@ -11,9 +12,9 @@ module BootstrapHelper
     content_tag tag, '', options
   end
 
-  ###############
-  ### BUTTONS ###
-  ###############
+  # ----------- #
+  # - BUTTONS - #
+  # ----------- #
 
   # Generates a button.
   def button(label = 'Button', options = {})
@@ -158,9 +159,9 @@ module BootstrapHelper
     end
   end
 
-  ##############
-  ### IMAGES ###
-  ##############
+  # ---------- #
+  # - IMAGES - #
+  # ---------- #
 
   # Generates a responsive-friendly image tag
   def image_responsive(source, options = {})
@@ -186,9 +187,9 @@ module BootstrapHelper
     image_tag source, options
   end
 
-  #################
-  ### UTILITIES ###
-  #################
+  # ------------- #
+  # - UTILITIES - #
+  # ------------- #
 
   # Appends new class names to the given options.
   def add_css_class(class_names, options)
@@ -248,9 +249,9 @@ module BootstrapHelper
     add_bgcolor_class options
   end
 
-  ################
-  ### OVERRIDE ###
-  ################
+  # ------------ #
+  # - OVERRIDE - #
+  # ------------ #
 
   # override rails helper: content_tag
   def content_tag(name, content_or_options_with_block = nil, options = nil, escape = true, &block)

@@ -1,7 +1,8 @@
 module HashHelper
-  ############
-  ### Hash ###
-  ############
+
+  # -------- #
+  # - Hash - #
+  # -------- #
 
   # Returns a specific value from the given hash (or the default value if not set).
   def get_value(key, hash, default_value = nil)
