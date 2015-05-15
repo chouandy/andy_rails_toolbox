@@ -69,8 +69,7 @@ module BootstrapHelper
 
   # Generates a link destroy button.
   def destroy_button(label = 'Destroy', options = {})
-    destroy_button_options = { icon: 'trash', color: 'danger', data: { method: :delete, confirm: 'Are you sure?' } }
-    destroy_button_options[:data][:confirm] = options.delete(:confirm) if options[:confirm]
+    destroy_button_options = { icon: 'trash', color: 'danger', method: :delete, confirm: 'Are you sure?' }
     destroy_button_options.merge!(options)
     link_button label, destroy_button_options
   end
@@ -120,6 +119,9 @@ module BootstrapHelper
         label = fa_icon(icon) + ' ' + label
       end
     end
+
+    options['data-method']  = options.delete(:method)  if options[:method]
+    options['data-confirm'] = options.delete(:confirm) if options[:confirm]
 
     create_button type, label, options
   end
