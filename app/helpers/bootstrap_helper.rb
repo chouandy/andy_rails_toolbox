@@ -32,7 +32,8 @@ module BootstrapHelper
   end
 
   # Generates a link submit button.
-  def link_button(label = 'Submit', options = {})
+  def link_button(label = 'Submit', options = {}, &block)
+    options, label = label, capture(&block) if block_given?
     btn :link_button, label, options
   end
 
@@ -151,13 +152,6 @@ module BootstrapHelper
       submit_tag label, options
     else
       # type code here
-    end
-  end
-
-  def button_group(*buttons, **options)
-    add_css_class 'btn-group', options
-    content_tag :div, options do
-      buttons.join.html_safe
     end
   end
 
