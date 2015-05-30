@@ -13,11 +13,13 @@ Gem::Specification.new do |spec|
   spec.description = 'Andy Rails Toolbox includes many useful helpers for rails development.'
   spec.license     = 'MIT'
 
-  spec.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  spec.files       = Dir["{app,lib}/**/*", 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  spec.add_dependency 'redcarpet', '>= 3.2.3'
-  spec.add_dependency 'pygments.rb', '>= 0.6.3'
-  spec.add_dependency 'font-awesome-rails', '>= 4.3.0.0'
+  spec.add_runtime_dependency 'bootstrap-sass', '~> 3.3.4'
+  spec.add_runtime_dependency 'sass-rails', '>= 3.2'
+  spec.add_runtime_dependency 'font-awesome-rails', '>= 4.3.0.0'
+  spec.add_runtime_dependency 'redcarpet', '>= 3.2.3'
+  spec.add_runtime_dependency 'pygments.rb', '>= 0.6.3'
 
   spec.required_ruby_version = '>= 1.9.3'
 end

@@ -39,14 +39,14 @@ Examples
 
 ICONS
 
-``` rb
+``` ruby
 bs_icon 'user'
 # => <span class="glyphicon glyphicon-user"></span>
 ```
 
 BUTTONS
 
-``` rb
+``` ruby
 html_button 'button'
 # => <button name="button" type="button" class="btn btn-default">button</button>
 html_button 'button', color: 'primary'
@@ -73,7 +73,7 @@ input_submit 'input button'
 
 IMAGES
 
-``` rb
+``` ruby
 image_responsive 'pic.png'
 # => <img class="img-responsive" src="/images/pic.png" alt="Pic" />
 image_rounded 'pic.png'
@@ -105,7 +105,7 @@ irb(main):002:0> Pygments.styles
 
 Examples
 
-``` rb
+``` ruby
 markdown '# h1'
 # => <h1>h1</h1>
 markdown '## h2'
@@ -118,7 +118,7 @@ markdown @post.content
 
 #### QrcodeHelper Examples
 
-``` rb
+``` ruby
 qrcode 'Hello world!'
 ```
 
@@ -126,7 +126,7 @@ qrcode 'Hello world!'
 
 QRCode options parameters: <a href="https://google-developers.appspot.com/chart/infographics/docs/qr_codes#overview" target="_blank">Here</a>
 
-``` rb
+``` ruby
 qrcode 'Hello world!', width: '300', output_encoding: 'Shift_JIS', error_correction_level: 'H', margin: '10'
 ```
 
@@ -134,17 +134,18 @@ qrcode 'Hello world!', width: '300', output_encoding: 'Shift_JIS', error_correct
 
 Font Awesome icons Homepage: <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">http://fortawesome.github.io/Font-Awesome/</a>
 
-Add below codes to layout `app/views/layout/application.html.erb`
+In your `application.css`, include the css file:
 
-``` erb
-...
-<%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' %>
-...
+```css
+/*
+ *= require font-awesome
+ */
 ```
+Then restart your webserver if it was previously running
 
 Examples
 
-``` rb
+``` ruby
 fa_icon "user"
 # => <i class="fa fa-user"></i>
 
@@ -160,7 +161,7 @@ fa_icon "user 4x"
 
 #### HashHelper Examples
 
-``` rb
+``` ruby
 options = { a: '1', b: '2', c: '3' }
 
 get_value :a, options
@@ -194,7 +195,7 @@ Add below codes to file `app/assets/javascripts/application.js`
 
 Use in View
 
-``` rb
+``` ruby
 timeago '2014-11-21 09:38:27.256503'
 # => '2個月之前'
 ```
