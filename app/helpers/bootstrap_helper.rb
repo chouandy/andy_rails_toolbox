@@ -5,11 +5,100 @@ module BootstrapHelper
   # --------- #
 
   # Generates an icon.
-  def bs_icon(icon, options = {})
-    icon = %(glyphicon glyphicon-#{icon})
-    add_css_class icon, options
-    tag = pop_value :tag, options, :span
-    content_tag tag, '', options
+  def bs_icon(icon, html_options = {})
+    html_options = html_options.stringify_keys
+    classes = ['glyphicon']
+    classes << "glyphicon-#{icon}"
+    if preset_class = html_options.delete('class')
+      classes << preset_class
+    end
+    html_options['class'] = classes * ' '
+
+    content_tag(:span, nil, html_options)
+  end
+
+  # ---------------- #
+  # - LINK BUTTONS - #
+  # ---------------- #
+
+  # Generates a link button.
+  def link_button(label = nil, options = nil, html_options = nil, &block)
+    html_options, options, label = options, label, capture(&block) if block_given?
+
+    html_options ||= {}
+    html_options = html_options.stringify_keys
+    html_options = normalize_button_options_for_bootstrap(html_options)
+
+    if (label_hidden = html_options.delete('label_hidden')) && !block_given?
+      label = content_tag :span, label, class: "hidden-#{label_hidden}"
+    end
+
+    if (icon = html_options.delete('icon')) && !block_given?
+      label = fa_icon(icon, text: label)
+    end
+
+    if html_options['confirm']
+      html_options['data-confirm'] = html_options.delete('confirm')
+    end
+
+    if html_options['disable_with']
+      html_options['data-disable-with'] = html_options.delete('disable_with')
+    end
+
+    link_to(label, options, html_options)
+  end
+
+  def new_button(label = nil, options = nil, html_options = nil)
+    button_options = { icon: 'plus', color: 'primary' }
+    html_options ||= {}
+    html_options.update button_options
+
+    link_button(label, options, html_options)
+  end
+
+  # Generates a link show button.
+  def show_button(label = nil, options = nil, html_options = nil)
+    button_options = { icon: 'search', color: 'info' }
+    html_options ||= {}
+    html_options.update button_options
+
+    link_button(label, options, html_options)
+  end
+
+  # Generates a link edit button.
+  def edit_button(label = nil, options = nil, html_options = nil)
+    button_options = { icon: 'edit', color: 'warning' }
+    html_options ||= {}
+    html_options.update button_options
+
+    link_button(label, options, html_options)
+  end
+
+  # Generates a link destroy button.
+  def destroy_button(label = nil, options = nil, html_options = nil)
+    button_options = { icon: 'trash', color: 'danger', method: :delete, confirm: 'Are you sure?' }
+    html_options ||= {}
+    html_options.update button_options
+
+    link_button(label, options, html_options)
+  end
+
+  # Generates a link back button.
+  def back_button(label = nil, options = nil, html_options = nil)
+    button_options = { icon: 'reply' }
+    html_options ||= {}
+    html_options.update button_options
+
+    link_button(label, options, html_options)
+  end
+
+  # Generates a link cancel button.
+  def cancel_button(label = nil, options = nil, html_options = nil)
+    button_options = { icon: 'ban' }
+    html_options ||= {}
+    html_options.update button_options
+
+    link_button(label, options, html_options)
   end
 
   # ----------- #
@@ -17,142 +106,50 @@ module BootstrapHelper
   # ----------- #
 
   # Generates a button.
-  def button(label = 'Button', options = {})
-    html_button label, options
-  end
+  def button(label = nil, html_options = nil, &block)
+    html_options, label = label, capture(&block) if block_given?
 
-  # Generates a html submit button.
-  def html_button(label = 'Button', options = {})
-    btn :html_button, label, options
-  end
+    html_options ||= {}
+    html_options = html_options.stringify_keys
+    html_options = normalize_button_options_for_bootstrap(html_options, :button)
 
-  # Generates a reset button.
-  def reset_button(label = 'Reset', options = {})
-    btn :reset_button, label, options
-  end
+    html_options['type'] ||= 'button'
 
-  # Generates a link submit button.
-  def link_button(label = 'Submit', options = {}, &block)
-    options, label = label, capture(&block) if block_given?
-    btn :link_button, label, options
-  end
+    if (label_hidden = html_options.delete('label_hidden')) && !block_given?
+      label = content_tag :span, label, class: "hidden-#{label_hidden}"
+    end
 
-  # Generates a input button.
-  def input_button(label = 'Button', options = {})
-    btn :input_button, label, options
-  end
+    if (icon = html_options.delete('icon')) && !block_given?
+      label = fa_icon(icon, text: label)
+    end
 
-  # Generates a input submit button.
-  def input_submit(label = 'Submit', options = {})
-    btn :input_submit, label, options
-  end
+    if html_options['confirm']
+      html_options['data-confirm'] = html_options.delete('confirm')
+    end
 
-  # Generates a link show button.
-  def show_button(label = 'Show', options = {})
-    show_button_options = { icon: 'search', color: 'info' }
-    show_button_options.merge!(options)
-    link_button label, show_button_options
-  end
+    if html_options['disable_with']
+      html_options['data-disable-with'] = html_options.delete('disable_with')
+    end
 
-  # Generates a link new button.
-  def new_button(label = 'New', options = {})
-    new_button_options = { icon: 'plus', color: 'primary' }
-    new_button_options.merge!(options)
-    link_button label, new_button_options
-  end
-
-  # Generates a link edit button.
-  def edit_button(label = 'Edit', options = {})
-    edit_button_options = { icon: 'edit', color: 'warning' }
-    edit_button_options.merge!(options)
-    link_button label, edit_button_options
-  end
-
-  # Generates a link destroy button.
-  def destroy_button(label = 'Destroy', options = {})
-    destroy_button_options = { icon: 'trash', color: 'danger', method: :delete, confirm: 'Are you sure?' }
-    destroy_button_options.merge!(options)
-    link_button label, destroy_button_options
-  end
-
-  # Generates a link back button.
-  def back_button(label = 'Back', options = {})
-    back_button_options = { icon: 'reply' }
-    back_button_options.merge!(options)
-    link_button label, back_button_options
+    button_tag(label, html_options)
   end
 
   # Generates a submit button.
-  def submit_button(label = 'Submit', options = {})
-    submit_button_options = { icon: 'check', color: 'primary' }
-    submit_button_options.merge!(options)
-    btn :submit_button, label, submit_button_options
+  def submit_button(label = nil, html_options = nil)
+    button_options = { icon: 'check', color: 'primary', name: 'submit', type: 'submit' }
+    html_options ||= {}
+    html_options.update button_options
+
+    button(label, html_options)
   end
 
-  # Generates a link cancel button.
-  def cancel_button(label = 'Cancel', options = {})
-    back_button_options = { icon: 'ban' }
-    back_button_options.merge!(options)
-    link_button label, back_button_options
-  end
+  # Generates a reset button.
+  def reset_button(label = nil, html_options = nil)
+    button_options = { icon: 'eraser', name: 'reset', type: 'reset' }
+    html_options ||= {}
+    html_options.update button_options
 
-  # Generates a button.
-  def btn(type, label, options = {})
-    add_css_class 'btn', options
-
-    color = pop_value :color, options, 'default'
-    add_css_class(%(btn-#{color}), options) if color
-
-    size = pop_value :size, options
-    add_css_class(%(btn-#{size}), options) if size
-
-    block = pop_value :block, options
-    add_css_class('btn-block', options) if block
-
-    label_hidden = pop_value :label_hidden, options
-    label = content_tag :sapn, label, class: "hidden-#{label_hidden}" if label_hidden
-
-    add_active_class options
-
-    icon = pop_value :icon, options
-    unless type.to_s.include? 'input'
-      if icon
-        label = fa_icon(icon) + ' ' + label
-      end
-    end
-
-    options['data-method']  = options.delete(:method)  if options[:method]
-    options['data-confirm'] = options.delete(:confirm) if options[:confirm]
-
-    create_button type, label, options
-  end
-
-  def create_button(type, label, options)
-    url = pop_value :url, options, '#'
-    case type
-    when :html_button
-      options[:type] = :button unless options[:type]
-      button_tag label, options
-    when :submit_button
-      options[:name] = nil
-      options[:type] = :submit
-      button_tag label, options
-    when :reset_button
-      options[:name] = nil
-      options[:type] = :reset
-      button_tag label, options
-    when :link_button
-      options[:role] = :button
-      link_to label, url, options
-    when :input_button
-      options[:value] = label
-      options[:type] = :button
-      tag 'input', options
-    when :input_submit
-      submit_tag label, options
-    else
-      # type code here
-    end
+    button(label, html_options)
   end
 
   # ---------- #
@@ -181,6 +178,52 @@ module BootstrapHelper
   def image_thumbnail(source, options = {})
     add_css_class 'img-thumbnail', options
     image_tag source, options
+  end
+
+  # ------------ #
+  # - OVERRIDE - #
+  # ------------ #
+
+  # override rails helper: content_tag
+  def content_tag(name, content_or_options_with_block = nil, options = nil, escape = true, &block)
+    if block_given?
+      options = content_or_options_with_block if content_or_options_with_block.is_a? Hash
+      normalize_typography_options(options) if options
+      content_tag_string name, capture(&block), options, escape
+    else
+      normalize_typography_options(options) if options
+      content_tag_string name, content_or_options_with_block, options, escape
+    end
+  end
+
+  private
+
+  def normalize_button_options_for_bootstrap(html_options = {}, type = :link)
+    classes = ['btn']
+    if color = html_options.delete('color')
+      classes << "btn-#{color}"
+    else
+      classes << 'btn-default'
+    end
+    if size = html_options.delete('size')
+      classes << "btn-#{size}"
+    end
+    if block = html_options.delete('block')
+      classes << 'btn-block'
+    end
+    if active = html_options.delete('active')
+      classes << 'active'
+    end
+    if type == :link && html_options['disabled']
+      html_options.delete('disabled')
+      classes << 'disabled'
+    end
+    if preset_class = html_options.delete('class')
+      classes << preset_class
+    end
+
+    html_options['class'] = classes * ' '
+    html_options
   end
 
   # ------------- #
@@ -243,21 +286,5 @@ module BootstrapHelper
     add_transform_class options
     add_color_class options
     add_bgcolor_class options
-  end
-
-  # ------------ #
-  # - OVERRIDE - #
-  # ------------ #
-
-  # override rails helper: content_tag
-  def content_tag(name, content_or_options_with_block = nil, options = nil, escape = true, &block)
-    if block_given?
-      options = content_or_options_with_block if content_or_options_with_block.is_a? Hash
-      normalize_typography_options(options) unless options.nil?
-      content_tag_string name, capture(&block), options, escape
-    else
-      normalize_typography_options(options) unless options.nil?
-      content_tag_string name, content_or_options_with_block, options, escape
-    end
   end
 end
