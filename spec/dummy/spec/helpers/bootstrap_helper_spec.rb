@@ -128,8 +128,6 @@ RSpec.describe BootstrapHelper do
     end
   end
 
-
-
   context "BUTTONS" do
 
     describe "#button" do

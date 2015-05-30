@@ -60,15 +60,11 @@ html_button 'button', icon: 'user'
 html_button 'button', active: true
 # => <button name="button" type="button" class="btn btn-default active">button</button>
 submit_button 'submit'
-# => <button type="submit" class="btn btn-default">submit</button>
+# => <button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> submit</button>
 reset_button 'reset'
-# => <button type="reset" class="btn btn-default">reset</button>
-link_button 'link', url: root_path
-# => <a class="btn btn-default" role="button" href="/">link</a>
-input_button 'input button'
-# => <input class="btn btn-default" value="input button" type="button" />
-input_submit 'input button'
-# => <input type="submit" name="commit" value="input button" class="btn btn-default" />
+# => <button name="reset" type="reset" class="btn btn-default"><i class="fa fa-eraser"></i> reset</button>
+link_button 'link', '/'
+# => <a class="btn btn-default" href="/">link</a>
 ```
 
 IMAGES
