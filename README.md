@@ -47,24 +47,30 @@ bs_icon 'user'
 BUTTONS
 
 ``` ruby
-html_button 'button'
+link_button 'link_label', '/'
+# => <a class="btn btn-default" href="/">link_label</a>
+link_button 'link_label', '/', color: 'primary'
+# => <a class="btn btn-primary" href="/">link_label</a>
+link_button 'link_label', '/', size: 'sm'
+# => <a class="btn btn-default btn-sm" href="/">link_label</a>
+link_button 'link_label', '/', block: true
+# => <a class="btn btn-default btn-block" href="/">link_label</a>
+link_button 'link_label', '/', active: true
+# => <a class="btn btn-default active" href="/">link_label</a>
+link_button 'link_label', '/', disabled: true
+# => <a class="btn btn-default disabled" href="/">link_label</a>
+link_button 'link-button', '/', class: 'preset-class'
+# => <a class="btn btn-default preset-class" href="/">link_label</a>
+link_button 'link-button', '/', label_hidden: 'xs'
+# => <a class="btn btn-default" href="/"><span class="hidden-xs">link_label</span></a>
+link_button 'link_label', '/', icon: 'user'
+# => <a class="btn btn-default" href="/"><i class="fa fa-user"></i> link_label</a>
+button 'button'
 # => <button name="button" type="button" class="btn btn-default">button</button>
-html_button 'button', color: 'primary'
-# => <button name="button" type="button" class="btn btn-primary">button</button>
-html_button 'button', size: 'sm'
-# => <button name="button" type="button" class="btn btn-default btn-sm">button</button>
-html_button 'button', block: true
-# => <button name="button" type="button" class="btn btn-default btn-block">button</button>
-html_button 'button', icon: 'user'
-# => <button name="button" type="button" class="btn btn-default"><i class="fa fa-user"></i> button</button>
-html_button 'button', active: true
-# => <button name="button" type="button" class="btn btn-default active">button</button>
 submit_button 'submit'
 # => <button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> submit</button>
 reset_button 'reset'
 # => <button name="reset" type="reset" class="btn btn-default"><i class="fa fa-eraser"></i> reset</button>
-link_button 'link', '/'
-# => <a class="btn btn-default" href="/">link</a>
 ```
 
 IMAGES
@@ -153,28 +159,6 @@ fa_icon "user", text: "Login", right: true
 
 fa_icon "user 4x"
 # => <i class="fa fa-user fa-4x"></i>
-```
-
-#### HashHelper Examples
-
-``` ruby
-options = { a: '1', b: '2', c: '3' }
-
-get_value :a, options
-# => '1'
-get_value :d, options
-# => nil
-get_value :d, options, '4'
-# => '4'
-
-pop_value :a, options
-# => '1'
-# options = { b: '2', c: '3' }
-pop_value :d, options
-# => nil
-pop_value :d, options, '4'
-# => '4'
-# options = { a: '1', b: '2', c: '3' }
 ```
 
 #### TimeagoHelper

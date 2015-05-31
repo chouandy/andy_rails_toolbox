@@ -55,8 +55,8 @@ RSpec.describe BootstrapHelper do
       end
 
       it "should get a bootstrap link button with preset class" do
-        rspec = helper.link_button 'link-button', '/', class: 'preset_class preset_class_2'
-        expected = %Q(<a class=\"btn btn-default preset_class preset_class_2\" href=\"/\">link-button</a>)
+        rspec = helper.link_button 'link-button', '/', class: 'preset-class'
+        expected = %Q(<a class=\"btn btn-default preset-class\" href=\"/\">link-button</a>)
         expect(rspec).to eq expected
       end
 

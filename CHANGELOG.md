@@ -1,3 +1,10 @@
+## 1.2.0
+
+#### Features:
+
+  - Remove HashHelper
+  - Refactor all helper with ruby way
+
 ## 1.1.1
 
 #### Features:

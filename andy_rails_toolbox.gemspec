@@ -15,7 +15,12 @@ Gem::Specification.new do |spec|
 
   spec.files       = Dir["{app,lib}/**/*", 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  spec.add_runtime_dependency 'bootstrap-sass', '~> 3.3.4'
+  spec.add_development_dependency 'rails', '>= 3.2'
+  spec.add_development_dependency 'sqlite3', '>= 1.3.10'
+  spec.add_development_dependency 'rspec-rails', '>= 3.2.1'
+  spec.add_development_dependency 'capybara', '>= 2.4.4'
+
+  spec.add_runtime_dependency 'bootstrap-sass', '>= 3.3.4'
   spec.add_runtime_dependency 'sass-rails', '>= 3.2'
   spec.add_runtime_dependency 'font-awesome-rails', '>= 4.3.0.0'
   spec.add_runtime_dependency 'redcarpet', '>= 3.2.3'
