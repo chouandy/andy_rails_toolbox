@@ -208,14 +208,21 @@ module BootstrapHelper
   # - OVERRIDE - #
   # ------------ #
 
-  def content_tag(name, content = nil, options = nil, escape = true, &block)
-    options, content = content, capture(&block) if block_given?
-
-    options ||= {}
-    options = options.symbolize_keys
-    options = normalize_options_for_typography(options)
-
-    content_tag_string(name, content, options, escape)
+  def content_tag(name, content_or_options_with_block = nil, options = nil, escape = true, &block)
+    if block_given?
+      if content_or_options_with_block.is_a?(Hash) || content_or_options_with_block.nil?
+        options = content_or_options_with_block
+        options ||= {}
+        options = options.symbolize_keys
+        options = normalize_options_for_typography(options)
+      end
+      content_tag_string(name, capture(&block), options, escape)
+    else
+      options ||= {}
+      options = options.symbolize_keys
+      options = normalize_options_for_typography(options)
+      content_tag_string(name, content_or_options_with_block, options, escape)
+    end
   end
 
   private

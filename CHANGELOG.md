@@ -1,3 +1,9 @@
+## 1.2.1
+
+#### Bugfixes:
+
+  - Fixed content_tag bugs
+
 ## 1.2.0
 
 #### Features:
