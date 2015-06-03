@@ -206,6 +206,21 @@ RSpec.describe BootstrapHelper do
     end
   end
 
+  context "BUTTONS" do
+
+    describe "#button" do
+
+      it "should get a bootstrap radio buttons group" do
+        rspec = helper.radio_buttons_group name: 'sex' do |radios|
+          radios << { label: 'Male',   value: 'male',   active: params[:sex] == 'male',   icon: 'male' }
+          radios << { label: 'Female', value: 'female', active: params[:sex] == 'female', icon: 'female' }
+        end
+        expected = %Q(<div data-toggle=\"buttons\" class=\"btn-group\"><label class=\"btn btn-default\" for=\"male\"><input type=\"radio\" name=\"sex\" id=\"sex_male\" value=\"male\" /> <i class=\"fa fa-male\"></i> Male</label><label class=\"btn btn-default\" for=\"female\"><input type=\"radio\" name=\"sex\" id=\"sex_female\" value=\"female\" /> <i class=\"fa fa-female\"></i> Female</label></div>)
+        expect(rspec).to eq expected
+      end
+    end
+  end
+
   context "IMAGES" do
 
     describe "#image_responsive" do

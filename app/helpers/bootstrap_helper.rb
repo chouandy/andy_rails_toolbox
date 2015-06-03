@@ -144,6 +144,61 @@ module BootstrapHelper
     button(label, html_options)
   end
 
+  # Generates a radio buttons group
+  def radio_buttons_group(html_options = nil, &block)
+    # Set html_options
+    html_options ||= {}
+    html_options['data-toggle'] = 'buttons'
+    html_options = html_options.symbolize_keys
+
+    # Set html_options class
+    classes = ['btn-group']
+    classes << html_options[:class] if html_options[:class]
+    html_options[:class] = classes * ' '
+
+    # Set radios options
+    radios = []
+    yield radios
+
+    # Set radio input name
+    name = html_options.delete(:name)
+
+    # Set radio_items
+    radio_items = []
+    radios.each do |radio|
+      radio_html_options = radio.symbolize_keys
+
+      label = radio_html_options.delete(:label)
+
+      if label_hidden = radio_html_options.delete(:label_hidden)
+        label = content_tag :span, label, class: "hidden-#{label_hidden}"
+      end
+
+      if icon = radio_html_options.delete(:icon)
+        label = fa_icon(icon, text: label)
+      end
+
+      value       = radio_html_options.delete(:value)
+      radio_input = radio_button_tag(name, value)
+
+      classes = ['btn', 'btn-default']
+      classes << radio_html_options[:class] if radio_html_options[:class]
+      classes << 'active' if radio_html_options.delete(:active)
+      radio_html_options[:class] = classes * ' '
+
+      radio_item = label_tag value, radio_html_options do
+        radio_input + ' ' + label
+      end
+
+      radio_items << radio_item
+    end
+
+    # Set output
+    content_tag :div, html_options do
+      (radio_items * '').html_safe
+    end
+  end
+
   # ---------- #
   # - IMAGES - #
   # ---------- #

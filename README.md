@@ -44,7 +44,7 @@ bs_icon 'user'
 # => <span class="glyphicon glyphicon-user"></span>
 ```
 
-BUTTONS
+LINK BUTTONS
 
 ``` ruby
 link_button 'link_label', '/'
@@ -65,12 +65,35 @@ link_button 'link-button', '/', label_hidden: 'xs'
 # => <a class="btn btn-default" href="/"><span class="hidden-xs">link_label</span></a>
 link_button 'link_label', '/', icon: 'user'
 # => <a class="btn btn-default" href="/"><i class="fa fa-user"></i> link_label</a>
+```
+
+BUTTONS
+
+``` ruby
 button 'button'
 # => <button name="button" type="button" class="btn btn-default">button</button>
 submit_button 'submit'
 # => <button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> submit</button>
 reset_button 'reset'
 # => <button name="reset" type="reset" class="btn btn-default"><i class="fa fa-eraser"></i> reset</button>
+```
+
+RADIO BUTTONS GROUP
+
+``` ruby
+= radio_buttons_group name: 'sex' do |radios|
+  - radios << { label: 'Male',   value: 'male',   active: params[:sex] == 'male',   icon: 'male' }
+  - radios << { label: 'Female', value: 'female', active: params[:sex] == 'female', icon: 'female' }
+# => <div data-toggle="buttons" class="btn-group">
+# =>   <label class="btn btn-default" for="male">
+# =>     <input type="radio" name="sex" id="sex_male" value="male" />
+# =>     <i class="fa fa-male"></i> Male
+# =>   </label>
+# =>   <label class="btn btn-default" for="female">
+# =>     <input type="radio" name="sex" id="sex_female" value="female" />
+# =>     <i class="fa fa-female"></i> Female
+# =>   </label>
+# => </div>
 ```
 
 IMAGES
