@@ -50,7 +50,7 @@ module BootstrapHelper
 
   def new_button(label = nil, options = nil, html_options = {})
     button_options = { icon: 'plus', color: 'primary' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     link_button(label, options, html_options)
   end
@@ -58,7 +58,7 @@ module BootstrapHelper
   # Generates a link show button.
   def show_button(label = nil, options = nil, html_options = {})
     button_options = { icon: 'search', color: 'info' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     link_button(label, options, html_options)
   end
@@ -66,7 +66,7 @@ module BootstrapHelper
   # Generates a link edit button.
   def edit_button(label = nil, options = nil, html_options = {})
     button_options = { icon: 'edit', color: 'warning' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     link_button(label, options, html_options)
   end
@@ -74,7 +74,7 @@ module BootstrapHelper
   # Generates a link destroy button.
   def destroy_button(label = nil, options = nil, html_options = {})
     button_options = { icon: 'trash', color: 'danger', method: :delete, confirm: 'Are you sure?' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     link_button(label, options, html_options)
   end
@@ -82,7 +82,7 @@ module BootstrapHelper
   # Generates a link back button.
   def back_button(label = nil, options = nil, html_options = {})
     button_options = { icon: 'reply' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     link_button(label, options, html_options)
   end
@@ -90,7 +90,7 @@ module BootstrapHelper
   # Generates a link cancel button.
   def cancel_button(label = nil, options = nil, html_options = {})
     button_options = { icon: 'ban' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     link_button(label, options, html_options)
   end
@@ -131,7 +131,7 @@ module BootstrapHelper
   # Generates a submit button.
   def submit_button(label = nil, html_options = {})
     button_options = { icon: 'check', color: 'primary', name: 'submit', type: 'submit' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     button(label, html_options)
   end
@@ -139,7 +139,7 @@ module BootstrapHelper
   # Generates a reset button.
   def reset_button(label = nil, html_options = {})
     button_options = { icon: 'eraser', name: 'reset', type: 'reset' }
-    html_options.update button_options
+    html_options = button_options.update html_options
 
     button(label, html_options)
   end
@@ -179,7 +179,7 @@ module BootstrapHelper
       end
 
       value       = radio_html_options.delete(:value)
-      radio_input = radio_button_tag(name, value)
+      radio_input = radio_button_tag(name, value, radio_html_options[:active])
 
       classes = ['btn', 'btn-default']
       classes << radio_html_options[:class] if radio_html_options[:class]
