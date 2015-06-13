@@ -12,7 +12,7 @@ module BootstrapHelper
     if html_options[:class]
       classes << html_options[:class]
     end
-    html_options[:class] = classes * ' '
+    html_options[:class] = classes * ' ' if classes.present?
 
     content_tag(:span, nil, html_options)
   end
@@ -154,7 +154,7 @@ module BootstrapHelper
     # Set html_options class
     classes = ['btn-group']
     classes << html_options[:class] if html_options[:class]
-    html_options[:class] = classes * ' '
+    html_options[:class] = classes * ' ' if classes.present?
 
     # Set radios options
     radios = []
@@ -184,7 +184,7 @@ module BootstrapHelper
       classes = ['btn', 'btn-default']
       classes << radio_html_options[:class] if radio_html_options[:class]
       classes << 'active' if radio_html_options.delete(:active)
-      radio_html_options[:class] = classes * ' '
+      radio_html_options[:class] = classes * ' ' if classes.present?
 
       radio_item = label_tag value, radio_html_options do
         radio_input + ' ' + label
@@ -212,7 +212,7 @@ module BootstrapHelper
       classes << html_options[:class]
     end
 
-    html_options[:class] = classes * ' '
+    html_options[:class] = classes * ' ' if classes.present?
 
     image_tag(source, html_options)
   end
@@ -226,7 +226,7 @@ module BootstrapHelper
       classes << html_options[:class]
     end
 
-    html_options[:class] = classes * ' '
+    html_options[:class] = classes * ' ' if classes.present?
 
     image_tag(source, html_options)
   end
@@ -240,7 +240,7 @@ module BootstrapHelper
       classes << html_options[:class]
     end
 
-    html_options[:class] = classes * ' '
+    html_options[:class] = classes * ' ' if classes.present?
 
     image_tag(source, html_options)
   end
@@ -254,7 +254,7 @@ module BootstrapHelper
       classes << html_options[:class]
     end
 
-    html_options[:class] = classes * ' '
+    html_options[:class] = classes * ' ' if classes.present?
 
     image_tag(source, html_options)
   end
@@ -304,7 +304,7 @@ module BootstrapHelper
         classes << html_options[:class]
       end
 
-      html_options[:class] = classes * ' '
+      html_options[:class] = classes * ' ' if classes.present?
       html_options
     end
 
@@ -329,7 +329,7 @@ module BootstrapHelper
         classes << html_options[:class]
       end
 
-      html_options[:class] = classes * ' '
+      html_options[:class] = classes * ' ' if classes.present?
       html_options
     end
 end
